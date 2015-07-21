@@ -1,0 +1,48 @@
+<template name="messages" xmlns="http://www.w3.org/1999/html">
+  <div class="page bookmarks" style="background-color: white">
+    {{> nav title='menu.observed' subtext=recipeCount}}
+
+    <div class="content-scrollable" style="height: calc(100% - 3.5rem)">
+      <div class="list-recipes">
+          <div class="wrapper-message">
+            {{#if loggedIn}}
+            {{#each queries}}
+             <b style="left: 0;{{#if disabled}} text-decoration:line-through{{/if}}"> {{title}} </b> {{price this}} <a>
+              <span class="icon icon-cross delete" style="left: auto; right: 0"></span></a>
+                <br>
+
+            {{/each}}
+            {{/if}}
+
+            <!--<div class="title-message">No messages yet</div>-->
+            <!--<div class="subtitle-message">Send <span class="icon-arrow-right-alt"></span> to send your thoughts. <a href="{{pathFor 'home'}}">Return home</a></div>-->
+
+          </div>
+      </div>
+    </div>
+      {{#unless tooMuchQueries}}
+    <a href="#" style="position: absolute; bottom: 0; width: 100%" class="btn-primary" id="add-new">Dodaj</a>
+        {{/unless}}
+
+    <!--{{#if loggedIn}}<div class="send-section">
+      <input id="msg-field" type="text"><span id="send-bt" class="icon-arrow-right-alt"></span>
+    </div>
+    {{/if}}-->
+  </div>
+</template>
+<template name="message">
+  <a href="#" class="item-activity">
+
+    <span class="attribution">
+      <span class="avatar">
+        <img src="{{userAvatar}}" class="image-avatar">
+      </span>
+      <span class="meta">
+        <span class="author">{{userName}}</span>: <span class="">{{message}}</span> {{text}}
+        <br><span class="location">{{formatDate date}} {{#if place}}&mdash;{{place}}{{/if}}</span>
+       </span>
+    </span>
+
+      {{#if image}}<div class="bg-image" style="background-image: url('{{image}}');"></div>{{/if}}
+  </a>
+</template>

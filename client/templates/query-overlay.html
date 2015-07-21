@@ -1,0 +1,19 @@
+<template name="queryOverlay">
+  <div class="overlay query">
+    <a href="#" class="js-close-overlay overlay-dismiss"><span class="icon-cross"></span></a>
+      {{#autoForm schema="Schemas.QuerySchema" id="newQuery" type="method" meteormethod="addQuery"}}
+        <div class="wrapper-heading">
+      <div class="subtitle-overlay">
+        <fieldset>
+          <legend>{{i18n "add_new_query"}}</legend>
+            {{> afQuickField name='title' autofocus=true}}
+            {{> afQuickField name='priceBottom'}}
+            {{> afQuickField name='priceTop'}}
+        </fieldset>
+
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" id="insert-bt">Insert</button>
+      {{/autoForm}}
+  </div>
+</template>

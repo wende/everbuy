@@ -1,0 +1,15 @@
+<template name="menu">
+<section id="menu" class="overthrow">
+  {{#each menuitems}}
+      {{> menuitem }}
+  {{/each}}
+</section>
+</template>
+<template name="menuitem">
+  <a href="{{pathFor module}}" class="{{activePage module}}">
+    <span class="wrapper-menu-item">
+      <span class="{{icon}}"></span>
+      <span class="title-menu">{{display}}</span>
+    </span>
+  </a>
+</template>

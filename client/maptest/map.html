@@ -1,0 +1,10 @@
+<template name="map">
+  <div class="page about">
+      {{> nav title='Map' black=false}}
+
+    <div class="content-scrollable">
+        {{> googleMap name="exampleMap" options=exampleMapOptions}}
+    </div>
+    <a class="btn-primary js-open" id="whereami">Where am I!?</a>
+  </div>
+</template>

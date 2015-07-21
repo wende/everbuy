@@ -1,0 +1,27 @@
+<template name="nav">
+  <nav class="{{#if black}}black{{/if}}">
+    <div class="nav-group">
+      {{#if back}}
+        <a class="nav-item js-back" href="#"><span class="icon-arrow-left-alt"></span></a>
+      {{else}}
+        <a class="nav-item js-menu" href="#"><span class="icon-menu"></span></a>
+      {{/if}}
+    </div>
+      {{#if home}}
+    <div class="nav-group" style="right: 0; left: auto; width: 9em; margin-top: 0.5em">
+      <a class="language nav-item {{#if polish}} selected {{/if}}">PL</a>
+      |
+      <a class="language nav-item {{#if english}} selected {{/if}}">EN</a>
+    </div>
+      {{/if}}
+
+    <div class="title-page">
+      {{i18n title}}
+      <span class="subtext-page">{{subtext}}</span>
+    </div>
+
+    <div class="nav-group right">
+      {{> Template.contentBlock }}
+    </div>
+  </nav>
+</template>

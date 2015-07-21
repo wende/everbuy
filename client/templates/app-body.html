@@ -1,0 +1,40 @@
+<template name="appBody">
+  <div class="wrapper-welcome">
+    <div class="title-welcome">{{i18n "app_name"}}</div>
+    <textarea class="description-welcome" style="width: 100%; height: 300px" name="config">{{config}}
+    </textarea>
+    
+    <!--<div class="description-welcome">
+    The app is designed to run on a physical device, where it uses the hardware's native camera and GPS support.
+    </div>-->
+
+  </div>
+
+  <div id="container" class="{{menuOpen}} {{overlayOpen}}">
+    {{>menu}}
+
+      <div class="notifications">
+        {{#unless connected}}
+          <div class="notification">
+            <span class="icon-sync"></span>
+            <div class="title-notification">{{i18n "reconnecting"}}</div>
+          </div>
+        {{/unless}}
+        {{#each notifications}}
+          <div class="notification">
+            <a class="btn-primary js-notification-action">{{action}}</a>
+            <div class="title-notification">{{title}}</div>
+          </div>
+        {{/each}}
+      </div>
+
+    {{> overlay}}
+
+    <div class="content-overlay"></div>
+
+    <div id="content-container">
+      {{> yield}}
+    </div>
+
+  </div>
+</template>

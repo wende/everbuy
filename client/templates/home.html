@@ -1,0 +1,53 @@
+<template name="home">
+  <div class="page home">
+
+    {{>nav title='app_name' black=true}}
+
+    <div class="content-scrollable">
+      <div class="bg-image home">
+        <h1 class="title-home" style="color: #f8f8f8">
+          {{i18n 'app_name'}}
+        </h1>
+        <span class="hours">{{i18n 'motto'}}
+        </span>
+        <span class="arrow"></span>
+      </div>
+
+      <!--<div class="callout-news">
+        <span class="title-callout">News</span>
+        {{latestNews.text}}
+      </div>
+
+      <h2 class="list-title">Module the shit out of it</h2>
+      <div class="list-subtitle">Complete app solution in 15 minutes</div>-->
+      <div class="list-activities">
+
+        {{#each activities}}
+          {{> activity}}
+        {{else}}
+            {{#with welcomeActivity}}
+                {{> activity}}
+            {{/with}}
+        {{/each}}
+        <a class="item-activity" style="height: 3em"></a>
+      </div>
+      <!--<a href="{{pathFor 'feed'}}" class="btn-primary">See how it's done!</a>
+
+      <h2 class="list-title">Our Modules</h2>
+      <div class="list-subtitle">Made by our best engineers (and Krazy Kris)</div>
+      <div class="list-recipes">
+        {{#each featuredRecipes}}
+          {{> recipeItem recipe=this size='small'}}
+        {{/each}}
+      </div>-->
+
+    </div>
+    <a href="{{pathFor 'messages'}}" class="btn-primary" style="
+       bottom: 0;
+       position: absolute;
+       width: 100%;
+       ">{{i18n "add_new_query"}}</a>
+
+
+  </div>
+</template>

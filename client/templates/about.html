@@ -1,0 +1,18 @@
+<template name="about">
+  <div class="page about">
+    {{> nav title='menu.about' black=true}}
+
+    <div class="content-scrollable">
+      <div class="bg-image about">
+        <h1 class="title-about">
+            {{i18n "app_name"}}
+        </h1>
+      </div>
+      <div class="description-about">
+        <p> {{i18n "about.description"}}</p>
+          </div>
+
+    </div>
+    <a href="{{i18n "about.link"}}" class="btn-primary js-open" target="_blank">{{i18n "about.learn_more"}}</a>
+  </div>
+</template>
