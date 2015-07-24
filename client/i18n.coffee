@@ -31,6 +31,7 @@ i18n.map "en",
     too_much_title: "Too many items!"
     found: "Match found for: {$1}!"
     item_found: "Item found!"
+    started_looking: "Looking"
   welcome:
     activity: "Saying hello"
     text: "Welcome to #{APP_NAME}!  "
@@ -63,6 +64,7 @@ i18n.map "pl",
     too_much_title: "Za dużo przedmiotów"
     found: "Znaleziono przedmiot z Twojego wyszukiwania: <a>{$1}</a>. Kliknij mnie aby przejść do aukcji!"
     item_found: "Znaleziono przedmiot!"
+    started_looking: "Szukamy"
   welcome:
     activity: "Witaj!"
     text: "Witamy w #{APP_NAME}! <br> Tutaj będą się pojawiały Twoje informacje o obserwowanych przedmiotach.

@@ -14,7 +14,11 @@ findAllSuggestions = ->
     else {userId: a._id, queries: a.searches.queries || [], suggestions: a.searches.suggestions || []}
   ts = Date.now()
   results = SuggestionsFinder.findAll(queries)
-  console.log("Handled #{queries.length} queries in #{Date.now() - ts} miliseconds")
+  searches_l = Stats.countNested(queries, "queries")
+  results_l = results.reduce (a,b) -> a + b.filter (c) -> c.length
+  console.log("results")
+  console.log(results)
+  console.log("Handled #{searches_l} queries and found #{results_l} items in #{Date.now() - ts} milliseconds")
   results
 
 tick = ->

@@ -9,6 +9,7 @@ AutoForm.hooks {
     }
     onSuccess : (args...)->
       console.log(args)
+      Router.go("home")
       Overlay.close()
 
     onError : (args...) ->

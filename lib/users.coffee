@@ -30,6 +30,8 @@ Meteor.startup ->
   user = Meteor.user()
 
   #On next tick find suggestions
+  Users.addSuggestion CardFactory.startedLooking(suggestion, userId)
+
   if Meteor.isServer then Meteor.setTimeout ->
     SuggestionsFinder.findAll([{userId: userId, queries: [suggestion], suggestions: []}])
   , 0
@@ -43,16 +45,18 @@ Meteor.startup ->
   @Users.find {_id: userId}
 
 @Users.addSuggestion = (suggestion) ->
-  console.log "Adding suggestion"
   check(suggestion, Object)
-  #TODO finish notif
-  Notifications.send(suggestion.userId, "Item found!" ,"We found an item You were looking for!")
+  console.log "Adding suggestion"
+  console.log suggestion
+  suggestion.createdAt = new Date()
+  if suggestion.conclusion == "found"
+    Notifications.send(suggestion.userId, "Item found!" ,"We found an item You were looking for!")
   Users.update {_id: suggestion.userId},
     {$push:
       "searches.suggestions":
         $each: [suggestion],
         $sort: {_id: -1},
-        $slice: -10
+        $slice: -20
     }
 
 @Users.removeSuggestion = (userId, suggestion) ->

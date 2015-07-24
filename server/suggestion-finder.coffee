@@ -13,15 +13,16 @@
   findAll : (searches) ->
     searches.map (user) =>
       userId = user.userId
-      alreadyFound = user.suggestions.map (a) -> a.suggestion.itemId
+      alreadyFound = (user.suggestions.map (a) -> a.suggestion.itemId).filter((a) -> a)
+      console.log("alreadyFound")
+      console.log(alreadyFound)
       results = user.queries
         .filter (query) -> !query.disabled
         .map (query) => {result: @find(query).filter((a) -> !(a.itemId in alreadyFound)), query: query, userId: userId}
         .map (search) ->
           search.result = search.result.filter (a) ->
-            price = parseFloat(a.priceInfo?.item[0].priceValue)
-            above = if search.query.priceBottom  then price > search.query.priceBottom  else true
-            under = if search.query.priceTop     then price < search.query.priceTop     else true
+            above = if search.query.priceBottom  then a.price > search.query.priceBottom  else true
+            under = if search.query.priceTop     then a.price < search.query.priceTop     else true
             above && under
           search
         .filter (a) -> a.result.length
@@ -35,6 +36,7 @@
       query : result.query
       suggestion: result.result[0]
       userId: result.userId
-      price: parseFloat(result.result[0].priceInfo?.item[0].priceValue)
+      price: result.price
+      timeToEnd: result.timeToEnd
     }
 }

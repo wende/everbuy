@@ -9,7 +9,9 @@
       <span class="meta">
        <span class="recipe">{{activity}}</span> : <span class="author">{{userName}}</span><br> {{{text}}}
           {{#if price}} <br> <span class="recipe"> {{price}} PLN</span> {{/if}}
-       {{#if place}}<span class="location">&mdash;{{place}}</span>{{/if}}
+          {{#if timeToEnd}} <span class="author"> {{timeToEnd}} </span> {{/if}}
+       {{#if place}}<span class="location">&mdash;{{place}}</span>{{/if}}<br>
+       {{#if createdAt}}<span class="location">&mdash;{{formatDate createdAt}}</span>{{/if}}
        </span>
     </span>
 
