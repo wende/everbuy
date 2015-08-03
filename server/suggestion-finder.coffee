@@ -1,11 +1,17 @@
 @SuggestionsFinder = {
 
-
+  getItemsCount: (query) ->
+    #0 makes it reduce with initial value
+    results = [0]
+    allegro = Allegro.getItemsCount(query)
+    results.concat allegro
+           .reduce (a,b) => a + b 
+    
   find : (query)->
     results = []
-    allegro = Allegro.searchItem(query.title)
+    allegro = Allegro.searchItem(query)
     #TODO other providers
-    results = results.concat allegro
+    results.concat allegro
 
   ###*
   searches : [{userId: String, queries&suggestions : [{title: String, priceBot: Number, priceTop: Number}]}]
@@ -36,7 +42,7 @@
       query : result.query
       suggestion: result.result[0]
       userId: result.userId
-      price: result.price
+      price: result.result[0].price
       timeToEnd: result.timeToEnd
     }
 }

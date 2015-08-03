@@ -29,7 +29,7 @@ Template.home.helpers({
           avatar: item.suggestion.photoUrl,
           path: "/messages",
           createdAt : item.createdAt,
-        }
+        };
       } else if(item.conclusion == "found") {
         return {
           activity: item.query.title,
@@ -44,7 +44,7 @@ Template.home.helpers({
       } else if(item.conclusion == "started_looking") {
         return {
           activity: item.query.title,
-          text: i18n("results.started_looking", item.title),
+          text: i18n("results.started_looking", item.query.title),
           userName: item.suggestion.itemTitle,
           avatar: item.suggestion.photoUrl,
           createdAt : item.createdAt

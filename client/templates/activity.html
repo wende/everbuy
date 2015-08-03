@@ -4,12 +4,18 @@
 
     <span class="attribution">
       <span class="avatar">
+        <figure>
         <img src="{{avatar}}" class="image-avatar">
+          <figcaption>          {{#if price}} <br> <span class="recipe"> {{price}} PLN</span> {{/if}}
+          </figcaption>
+        </figure>
       </span>
       <span class="meta">
-       <span class="recipe">{{activity}}</span> : <span class="author">{{userName}}</span><br> {{{text}}}
-          {{#if price}} <br> <span class="recipe"> {{price}} PLN</span> {{/if}}
-          {{#if timeToEnd}} <span class="author"> {{timeToEnd}} </span> {{/if}}
+								{{#if topic}}<span class="author"> {{topic}} </span> <br> {{/if}}
+        <span class="location"> {{{text}}}</span> <br>
+								<!--<span class="recipe">{{activity}}</span> -->
+								<span class="author">{{userName}}</span><br><br>
+       {{#if timeToEnd}} <span class="author"> {{timeToEnd}} </span> {{/if}}
        {{#if place}}<span class="location">&mdash;{{place}}</span>{{/if}}<br>
        {{#if createdAt}}<span class="location">&mdash;{{formatDate createdAt}}</span>{{/if}}
        </span>

@@ -22,13 +22,13 @@
       <div class="list-subtitle">Complete app solution in 15 minutes</div>-->
       <div class="list-activities">
 
-        {{#each activities}}
-          {{> activity}}
-        {{else}}
-            {{#with welcomeActivity}}
-                {{> activity}}
-            {{/with}}
-        {{/each}}
+       {{#each activities}}
+         {{> activity}}
+       {{else}}
+         {{#with welcomeActivity}}
+           {{> activity}}
+         {{/with}}
+       {{/each}}
         <a class="item-activity" style="height: 3em"></a>
       </div>
       <!--<a href="{{pathFor 'feed'}}" class="btn-primary">See how it's done!</a>
@@ -42,7 +42,7 @@
       </div>-->
 
     </div>
-    <a href="{{pathFor 'messages'}}" class="btn-primary" style="
+    <a href="{{pathFor 'messages' query='overlay'}}" class="btn-primary" style="
        bottom: 0;
        position: absolute;
        width: 100%;

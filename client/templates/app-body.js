@@ -1,31 +1,30 @@
 var ANIMATION_DURATION = 300;
-var NOTIFICATION_TIMEOUT = 3000;
+var NOTIFICATION_TIMEOUT = 5000;
 var MENU_KEY = 'menuOpen';
 var IGNORE_CONNECTION_ISSUE_KEY = 'ignoreConnectionIssue';
 var CONNECTION_ISSUE_TIMEOUT = 5000;
 
 
-
 Session.setDefault(IGNORE_CONNECTION_ISSUE_KEY, true);
 Session.setDefault(MENU_KEY, false);
 Session.set("config", [{
-  display: i18n("menu.home"),
+  display: "menu.home",
   icon: "icon-home",
   module: "home"
 },{
-  display:i18n("menu.observed"),
+  display: "menu.observed",
   icon: "icon-share",
   module: "messages"
 },{
-    display: i18n("menu.plans"),
+    display: "menu.plans",
     icon: "icon-rss",
     module: "feed"
 },{
-  display: i18n("menu.about"),
+  display: "menu.about",
   icon: "icon-question",
   module: "about"
 },{
-  display: "Powered by Modulistics 0.1.1©",
+  display: "menu.powered",
   icon: "",
   module: "#"
 }])
@@ -50,7 +49,11 @@ Template.appBody.addNotification = function(notification) {
   Meteor.setTimeout(function() {
     notifications.remove(id);
   }, NOTIFICATION_TIMEOUT);
+		return id;
 } 
+Template.appBody.removeNotification = function(id){
+		notifications.remove(id);
+}
 
 Meteor.startup(function () {
 
@@ -61,28 +64,6 @@ Meteor.startup(function () {
       return false;
     }
   });
-
-  Session.set("config", [{
-    display: i18n("menu.home"),
-    icon: "icon-home",
-    module: "home"
-  },{
-    display: i18n("menu.observed"),
-    icon: "icon-share",
-    module: "messages"
-  },{
-    display: i18n("menu.plans"),
-    icon: "icon-rss",
-    module: "feed"
-  },{
-    display: i18n("menu.about"),
-    icon: "icon-question",
-    module: "about"
-  },{
-    display: "Powered by Modulistics 0.1.1©",
-    icon: "",
-    module: "#"
-  }]);
   // set up a swipe left / right handler
   $(document.body).touchwipe({
     wipeLeft: function () {

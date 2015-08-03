@@ -3,8 +3,13 @@
  */
 Template.menu.helpers({
   menuitems: function(){ return Session.get("config")}
-})
-
+});
+Template.menuitem.helpers({
+		text: function(){
+				console.log(this.display);
+				return i18n(this.display);
+				}
+});
 /*
 
 </a>

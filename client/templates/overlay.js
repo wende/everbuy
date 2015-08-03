@@ -62,7 +62,8 @@ Template.overlay.helpers({
 
 Template.overlay.events({
   'click .js-close-overlay': function(event) {
-    event.preventDefault();
-    Overlay.close()
+				event.preventDefault();
+				Overlay.close();
+						
   }
 });

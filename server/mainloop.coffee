@@ -15,7 +15,7 @@ findAllSuggestions = ->
   ts = Date.now()
   results = SuggestionsFinder.findAll(queries)
   searches_l = Stats.countNested(queries, "queries")
-  results_l = results.reduce (a,b) -> a + b.filter (c) -> c.length
+  results_l = results.reduce ((a,b) -> a + b.filter (c) -> c.length), 0
   console.log("results")
   console.log(results)
   console.log("Handled #{searches_l} queries and found #{results_l} items in #{Date.now() - ts} milliseconds")

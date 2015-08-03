@@ -22,7 +22,8 @@
         {{/unless}}
         {{#each notifications}}
           <div class="notification">
-            <a class="btn-primary js-notification-action">{{action}}</a>
+												{{#if pending}}<span class="icon-sync"></span> {{/if}}
+            {{#if action}}<a class="btn-primary js-notification-action">{{action}}</a>{{/if}}
             <div class="title-notification">{{title}}</div>
           </div>
         {{/each}}

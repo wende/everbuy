@@ -5,13 +5,13 @@
         <div class="wrapper-heading">
       <div class="subtitle-overlay">
         <fieldset>
-          <legend>{{i18n "add_new_query"}}</legend>
+										<legend style="font-weight: bold">{{i18n "add_new_query"}}</legend>
+										<br>
             {{> afQuickField name='title' autofocus=true}}
-            {{> afQuickField name='priceBottom'}}
-            {{> afQuickField name='priceTop'}}
+            {{> afQuickField name='priceBottom' placeholder=optional}}
+            {{> afQuickField name='priceTop' placeholder=optional}}
         </fieldset>
-
-      </div>
+						</div>
     </div>
     <button type="submit" class="btn btn-primary" id="insert-bt">Insert</button>
       {{/autoForm}}

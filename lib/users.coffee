@@ -1,3 +1,5 @@
+MAX_ITEM_COUNT = 5
+
 @Users = Meteor.users
 
 @Schemas = {}
@@ -26,17 +28,20 @@ Meteor.startup ->
     doc.userId == userId
 }
 
-@Users.addQuery = (userId, suggestion) ->
+@Users.addQuery = (userId, query) ->
   user = Meteor.user()
+ 
+  if Meteor.isServer
+    count = SuggestionsFinder.getItemsCount(query)
+    if count > MAX_ITEM_COUNT then throw new Meteor.Error(400, count ,"Too many items")
+    #On next tick find suggestions
+    Users.addSuggestion CardFactory.startedLooking(query, userId)
 
-  #On next tick find suggestions
-  Users.addSuggestion CardFactory.startedLooking(suggestion, userId)
+    Meteor.setTimeout ->
+      SuggestionsFinder.findAll([{userId: userId, queries: [query], suggestions: []}])
+    , 0
 
-  if Meteor.isServer then Meteor.setTimeout ->
-    SuggestionsFinder.findAll([{userId: userId, queries: [suggestion], suggestions: []}])
-  , 0
-
-  @Users.update {_id: userId}, {$push: {"searches.queries": suggestion}}
+  @Users.update {_id: userId}, {$push: {"searches.queries": query}}
 
 @Users.removeQuery = (userId, suggestion) ->
   @Users.update {_id: userId}, {$pull: {"searches.queries": {title : suggestion}}}
@@ -47,7 +52,7 @@ Meteor.startup ->
 @Users.addSuggestion = (suggestion) ->
   check(suggestion, Object)
   console.log "Adding suggestion"
-  console.log suggestion
+  #console.log suggestion
   suggestion.createdAt = new Date()
   if suggestion.conclusion == "found"
     Notifications.send(suggestion.userId, "Item found!" ,"We found an item You were looking for!")
@@ -55,7 +60,7 @@ Meteor.startup ->
     {$push:
       "searches.suggestions":
         $each: [suggestion],
-        $sort: {_id: -1},
+        $sort: {createdAt: 1},
         $slice: -20
     }
 
@@ -83,4 +88,9 @@ Meteor.methods {
 
   disableQuery      : (id, title) -> Users.update {_id: id, "searches.queries.title": title},
                                                   {$set : "searches.queries.$.disabled": true}
+  getItemsCount   : (query) ->
+    if not this.isSimulation
+      r = SuggestionsFinder.getItemsCount(query)
+      console.log(r)
+      r
 }
