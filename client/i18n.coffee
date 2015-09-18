@@ -6,7 +6,7 @@ Meteor.startup ->
 
 i18n.map "en",
   about :
-    description: "Desc"
+    description: "Everbuy in an application which allows You to repeatedly look for items You like on online vendors"
     learn_more: "Learn more"
     link: "#"
   add: "Add"
@@ -31,7 +31,7 @@ i18n.map "en",
     price_top: "Price lower than"
     sending: "Sending"
     optional :"Optional"
-    too_many : "More then {$1} items found. Be more specific"
+    too_many : "More then {$1} items found (5 Max). Be more specific"
   reconnecting: "Trying to connect"
   results:
     too_much: "The amount of items found for query <a>{$1}</a> is a little bit high. Consider being more specific"
@@ -46,7 +46,7 @@ i18n.map "en",
 
 i18n.map "pl",
   about :
-    description: "Deść"
+    description: "Everbuy to aplikacja, dzięki której znajdziesz przedmioty na platformach transakcyjnych"
     learn_more: "Dowiedz się więcej"
     link: "#"
   add: "Dodaj"
@@ -71,7 +71,7 @@ i18n.map "pl",
     price_top: "Cena niższa niż"
     sending: "Wysyłanie"
     optional: "Opcjonalnie"
-    too_many : "Znaleziono wiecej niż {$1} przedmiotów. Wpisz bardziej szczegółowe dane"
+    too_many : "Znaleziono wiecej niż {$1} przedmiotów (Max 5). Wpisz bardziej szczegółowe dane"
   reconnecting: "Łączę z serwerem"
   results:
     too_much: "Ilość przedmiotów dla wyszukiwania <a>'{$1}'</a> jest wyjątkowo duża. Spróbuj doprecyzować opis. Wyłączyliśmy wyszukiwanie tego przedmiotu"

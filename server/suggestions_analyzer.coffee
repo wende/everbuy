@@ -1,6 +1,6 @@
 @SuggestionsAnalyzer = {
   rules : {
-    tooMuch : (a) -> a.length >= 3
+    tooMuch : (a) -> a.length > 5
 
   }
   analyzeResult : (results) ->

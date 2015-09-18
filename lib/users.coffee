@@ -55,7 +55,7 @@ Meteor.startup ->
   #console.log suggestion
   suggestion.createdAt = new Date()
   if suggestion.conclusion == "found"
-    Notifications.send(suggestion.userId, "Item found!" ,"We found an item You were looking for!")
+    Notifications.send(suggestion.userId, "Item found!" ,"We've found #{suggestion.query.title} for You!")
   Users.update {_id: suggestion.userId},
     {$push:
       "searches.suggestions":
